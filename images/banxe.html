@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MotoDeal Premium - Đăng bán xe phân khối lớn</title>
+    <style>
+         :root {
+            --primary: #d32f2f;
+            --primary-dark: #9a0007;
+            --primary-light: #ff6659;
+            --secondary: #212121;
+            --light: #f5f5f5;
+            --dark: #212121;
+            --gray: #757575;
+            --light-gray: #e0e0e0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #fafafa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+        }
+        
+        header {
+            background-color: var(--dark);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            color: var(--primary);
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 32px;
+        }
+        
+        .logo span {
+            color: white;
+            font-weight: 300;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+            position: relative;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 5px 0;
+            position: relative;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        nav ul li a.active {
+            color: var(--primary);
+        }
+        
+        nav ul li a.active:after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin: 60px 0 40px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--dark);
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto 50px;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            margin-left: 15px;
+        }
+        
+        .btn-outline:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .footer-column p {
+            color: var(--light-gray);
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: block;
+            padding: 5px 0;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .contact-info {
+            list-style: none;
+        }
+        
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .contact-info i {
+            color: var(--primary);
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light-gray);
+            font-size: 14px;
+        }
+        /* Form specific styles */
+        
+        .sell-form-section {
+            padding: 60px 0;
+            background-color: var(--light);
+            /* Use light variable for consistency */
+        }
+        
+        .sell-form {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 15px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: 5px;
+            font-size: 16px;
+            color: var(--dark);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.2);
+        }
+        
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        input[type="file"] {
+            padding: 10px 0;
+            /* Adjust padding for file input, reset vertical padding given by .form-control */
+        }
+        
+        .form-actions {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .form-actions .btn {
+            width: auto;
+            padding: 15px 40px;
+            font-size: 18px;
+        }
+        /* Responsive styles */
+        
+        @media (max-width: 992px) {
+            .section-title h2 {
+                font-size: 36px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: var(--dark);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                align-items: center;
+            }
+            nav ul.show {
+                display: flex;
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .section-title h2 {
+                font-size: 28px;
+            }
+            .sell-form {
+                padding: 25px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .form-actions .btn {
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-motorcycle"></i> MotoDeal<span>Premium</span>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav>
+                    <ul id="mainMenu">
+                        <li><a href="trangchu.html">Trang chủ</a></li>
+                        <li><a href="muaxe.html">Mua xe PKL</a></li>
+                        <li><a href="banxe.html" class="active">Bán xe PKL</a></li>
+                        <li><a href="phutung.html">Phụ tùng</a></li>
+                        <li><a href="tintuc.html">Tin tức</a></li>
+                        <li><a href="lienhe.html">Liên hệ</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="sell-form-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Đăng tin bán xe phân khối lớn của bạn</h2>
+                </div>
+                <p class="section-subtitle">Điền thông tin chi tiết về chiếc xe của bạn để chúng tôi giúp bạn kết nối với người mua tiềm năng một cách nhanh chóng và hiệu quả.</p>
+
+                <form class="sell-form" action="#" method="POST" enctype="multipart/form-data">
+                    <h3>Thông tin cơ bản về xe</h3>
+                    <div class="form-group">
+                        <label for="bike-make">Hãng xe <span style="color: var(--primary);">*</span></label>
+                        <input type="text" id="bike-make" name="bike-make" class="form-control" placeholder="Ví dụ: Ducati, BMW, Harley Davidson" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bike-model">Dòng xe <span style="color: var(--primary);">*</span></label>
+                        <input type="text" id="bike-model" name="bike-model" class="form-control" placeholder="Ví dụ: Monster 1200, S1000RR" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bike-year">Năm sản xuất <span style="color: var(--primary);">*</span></label>
+                        <input type="number" id="bike-year" name="bike-year" class="form-control" min="1900" max="2099" step="1" value="2023" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bike-odo">Số ODO (km) <span style="color: var(--primary);">*</span></label>
+                        <input type="number" id="bike-odo" name="bike-odo" class="form-control" min="0" placeholder="Ví dụ: 5000" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bike-price">Giá bán mong muốn (VND) <span style="color: var(--primary);">*</span></label>
+                        <input type="number" id="bike-price" name="bike-price" class="form-control" min="0" placeholder="Ví dụ: 1000000000" required>
+                        <small style="color: var(--gray);">Nhập giá không dấu chấm, không dấu phẩy.</small>
+                    </div>
+
+                    <h3 style="margin-top: 40px; margin-bottom: 20px;">Thông số kỹ thuật</h3>
+                    <div class="form-group">
+                        <label for="bike-cc">Dung tích xi lanh (cc)</label>
+                        <input type="number" id="bike-cc" name="bike-cc" class="form-control" min="500" placeholder="Ví dụ: 999">
+                    </div>
+                    <div class="form-group">
+                        <label for="bike-hp">Công suất (HP)</label>
+                        <input type="number" id="bike-hp" name="bike-hp" class="form-control" min="1" placeholder="Ví dụ: 207">
+                    </div>
+
+                    <h3 style="margin-top: 40px; margin-bottom: 20px;">Mô tả chi tiết về xe</h3>
+                    <div class="form-group">
+                        <label for="bike-description">Mô tả xe của bạn</label>
+                        <textarea id="bike-description" name="bike-description" class="form-control" rows="5" placeholder="Mô tả tình trạng xe, các điểm nổi bật, phụ kiện đi kèm, lịch sử bảo dưỡng..."></textarea>
+                    </div>
+
+                    <h3 style="margin-top: 40px; margin-bottom: 20px;">Hình ảnh xe</h3>
+                    <div class="form-group">
+                        <label for="bike-images">Tải lên hình ảnh (Tối đa 5 ảnh)</label>
+                        <input type="file" id="bike-images" name="bike-images[]" class="form-control" accept="image/*" multiple>
+                        <small style="color: var(--gray);">Chọn các ảnh rõ nét, đầy đủ góc cạnh của xe.</small>
+                    </div>
+
+                    <h3 style="margin-top: 40px; margin-bottom: 20px;">Thông tin liên hệ của bạn</h3>
+                    <div class="form-group">
+                        <label for="contact-name">Họ và tên <span style="color: var(--primary);">*</span></label>
+                        <input type="text" id="contact-name" name="contact-name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-email">Email <span style="color: var(--primary);">*</span></label>
+                        <input type="email" id="contact-email" name="contact-email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-phone">Số điện thoại <span style="color: var(--primary);">*</span></label>
+                        <input type="tel" id="contact-phone" name="contact-phone" class="form-control" required>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn">Đăng tin bán xe</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Về MotoDeal Premium</h3>
+                    <p>Chuyên cung cấp các dòng xe phân khối lớn cao cấp từ các thương hiệu hàng đầu thế giới. Cam kết chất lượng và dịch vụ tốt nhất.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Liên kết nhanh</h3>
+                    <ul class="footer-links">
+                        <li><a href="trangchu.html">Trang chủ</a></li>
+                        <li><a href="muaxe.html">Mua xe PKL</a></li>
+                        <li><a href="banxe.html">Bán xe PKL</a></li>
+                        <li><a href="phutung.html">Phụ tùng</a></li>
+                        <li><a href="tintuc.html">Tin tức</a></li>
+                        <li><a href="lienhe.html">Liên hệ</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Liên hệ</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Đường ABC, Quận 1, TP.HCM</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone-alt"></i>
+                            <span>0901 234 567</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@motodeal-premium.vn</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Mở cửa: 8:00 - 18:00 (Thứ 2 - Thứ 7)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="copyright">
+                &copy; 2023 MotoDeal Premium. Bản quyền thuộc về MotoDeal Premium.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.getElementById('mainMenu').classList.toggle('show');
+        });
+    </script>
+</body>
+
+</html>

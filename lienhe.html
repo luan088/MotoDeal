@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MotoDeal Premium - Liên hệ</title>
+    <style>
+         :root {
+            --primary: #d32f2f;
+            --primary-dark: #9a0007;
+            --primary-light: #ff6659;
+            --secondary: #212121;
+            --light: #f5f5f5;
+            --dark: #212121;
+            --gray: #757575;
+            --light-gray: #e0e0e0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #fafafa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+        }
+        
+        header {
+            background-color: var(--dark);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            color: var(--primary);
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 32px;
+        }
+        
+        .logo span {
+            color: white;
+            font-weight: 300;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+            position: relative;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 5px 0;
+            position: relative;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        nav ul li a.active {
+            color: var(--primary);
+        }
+        
+        nav ul li a.active:after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin: 60px 0 40px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--dark);
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto 50px;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            margin-left: 15px;
+        }
+        
+        .btn-outline:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .footer-column p {
+            color: var(--light-gray);
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: block;
+            padding: 5px 0;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .contact-info {
+            list-style: none;
+        }
+        
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .contact-info i {
+            color: var(--primary);
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light-gray);
+            font-size: 14px;
+        }
+        /* --- New styles for Contact page --- */
+        
+        .hero-contact {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://via.placeholder.com/1920x600?text=Contact+Us') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+        }
+        
+        .hero-contact h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero-contact p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .contact-details-section {
+            padding: 60px 0;
+            background-color: var(--light);
+        }
+        
+        .contact-content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .contact-card {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+        
+        .contact-card i {
+            font-size: 48px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .contact-card h3 {
+            font-size: 24px;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        
+        .contact-card p {
+            font-size: 16px;
+            color: var(--gray);
+            margin-bottom: 10px;
+        }
+        
+        .contact-card a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .contact-card a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+        
+        .contact-form-section {
+            padding: 60px 0;
+        }
+        
+        .contact-form {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 15px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: 5px;
+            font-size: 16px;
+            color: var(--dark);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.2);
+        }
+        
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .form-actions {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .form-actions .btn {
+            width: auto;
+            padding: 15px 40px;
+            font-size: 18px;
+        }
+        
+        .map-section {
+            padding-bottom: 60px;
+        }
+        
+        .map-container {
+            width: 100%;
+            height: 450px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            margin-top: 40px;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        /* Responsive styles */
+        
+        @media (max-width: 992px) {
+            .section-title h2 {
+                font-size: 36px;
+            }
+            .hero-contact h1 {
+                font-size: 40px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: var(--dark);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                align-items: center;
+            }
+            nav ul.show {
+                display: flex;
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .section-title h2 {
+                font-size: 28px;
+            }
+            .hero-contact h1 {
+                font-size: 32px;
+            }
+            .hero-contact p {
+                font-size: 16px;
+            }
+            .contact-form {
+                padding: 25px;
+            }
+            .map-container {
+                height: 300px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .btn {
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+            .logo {
+                font-size: 24px;
+            }
+            .logo i {
+                font-size: 28px;
+            }
+            .form-actions .btn {
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-motorcycle"></i> MotoDeal<span>Premium</span>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav>
+                    <ul id="mainMenu">
+                        <li><a href="index .html">Trang chủ</a></li>
+                        <li><a href="muaxe.html">Mua xe PKL</a></li>
+                        <li><a href="banxe.html">Bán xe PKL</a></li>
+                        <li><a href="phutung.html">Phụ tùng</a></li>
+                        <li><a href="tintuc.html">Tin tức</a></li>
+                        <li><a href="lienhe.html" class="active">Liên hệ</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-contact">
+            <div class="container">
+                <h1>Liên hệ với chúng tôi</h1>
+                <p>Chúng tôi luôn sẵn lòng lắng nghe và hỗ trợ bạn. Đừng ngần ngại liên hệ với MotoDeal Premium!</p>
+                <a href="#contact-form-section" class="btn">Gửi tin nhắn cho chúng tôi</a>
+            </div>
+        </section>
+
+        <section class="contact-details-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Thông tin liên hệ</h2>
+                </div>
+                <p class="section-subtitle">Bạn có thể liên hệ với chúng tôi qua các kênh sau:</p>
+
+                <div class="contact-content-grid">
+                    <div class="contact-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Địa chỉ</h3>
+                        <p>123 Đường ABC, Phường XYZ,</p>
+                        <p>Quận 1, TP. Hồ Chí Minh, Việt Nam</p>
+                        <a href="https://maps.app.goo.gl/YourGoogleMapsLink" target="_blank">Xem trên Bản đồ</a>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fas fa-phone-alt"></i>
+                        <h3>Điện thoại</h3>
+                        <p>Số điện thoại chính: <a href="tel:0901234567">0901 234 567</a></p>
+                        <p>Hỗ trợ kỹ thuật: <a href="tel:0908765432">0908 765 432</a></p>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email</h3>
+                        <p>Hỗ trợ chung: <a href="mailto:info@motodeal-premium.vn">info@motodeal-premium.vn</a></p>
+                        <p>Tuyển dụng: <a href="mailto:hr@motodeal-premium.vn">hr@motodeal-premium.vn</a></p>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fas fa-clock"></i>
+                        <h3>Giờ làm việc</h3>
+                        <p>Thứ 2 - Thứ 7: 8:00 AM - 6:00 PM</p>
+                        <p>Chủ Nhật: Đóng cửa</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-form-section" id="contact-form-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Gửi tin nhắn cho chúng tôi</h2>
+                </div>
+                <p class="section-subtitle">Hãy điền vào biểu mẫu dưới đây để gửi câu hỏi hoặc yêu cầu hỗ trợ. Chúng tôi sẽ phản hồi trong thời gian sớm nhất!</p>
+
+                <form class="contact-form" action="#" method="POST">
+                    <div class="form-group">
+                        <label for="full-name">Họ và tên <span style="color: var(--primary);">*</span></label>
+                        <input type="text" id="full-name" name="full-name" class="form-control" required placeholder="Nhập họ và tên của bạn">
+                    </div>
+                    <div class="form-group">
+                        <label for="email-address">Email <span style="color: var(--primary);">*</span></label>
+                        <input type="email" id="email-address" name="email-address" class="form-control" required placeholder="Nhập địa chỉ email của bạn">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone-number">Số điện thoại (tùy chọn)</label>
+                        <input type="tel" id="phone-number" name="phone-number" class="form-control" placeholder="Nhập số điện thoại (nếu có)">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Chủ đề <span style="color: var(--primary);">*</span></label>
+                        <input type="text" id="subject" name="subject" class="form-control" required placeholder="Ví dụ: Hỗ trợ kỹ thuật, Đặt hẹn xem xe">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Nội dung tin nhắn <span style="color: var(--primary);">*</span></label>
+                        <textarea id="message" name="message" class="form-control" rows="6" required placeholder="Viết tin nhắn của bạn ở đây..."></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Gửi tin nhắn</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section class="map-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Vị trí của chúng tôi</h2>
+                </div>
+                <p class="section-subtitle">Hãy đến thăm chúng tôi tại địa chỉ dưới đây để trải nghiệm trực tiếp dịch vụ và các sản phẩm.</p>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.499645229562!2d106.69742017409278!3d10.772590789370008!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f3f2a89c9d9%3A0xc3f8f1c8f1a1d9b!2zMTIzIMSQxrDhu5dngyBBQkMsIFF14bqtbiAxLCBUUC4gSOG7kyBDaMOtIE1pbmg!5e0!3m2!1svi!2s!4v1716434460515!5m2!1svi!2s"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Về MotoDeal Premium</h3>
+                    <p>Chuyên cung cấp các dòng xe phân khối lớn cao cấp từ các thương hiệu hàng đầu thế giới. Cam kết chất lượng và dịch vụ tốt nhất.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Liên kết nhanh</h3>
+                    <ul class="footer-links">
+                        <li><a href="trangchu.html">Trang chủ</a></li>
+                        <li><a href="muaxe.html">Mua xe PKL</a></li>
+                        <li><a href="banxe.html">Bán xe PKL</a></li>
+                        <li><a href="phutung.html">Phụ tùng</a></li>
+                        <li><a href="tintuc.html">Tin tức</a></li>
+                        <li><a href="lienhe.html">Liên hệ</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Liên hệ</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Đường ABC, Quận 1, TP.HCM</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone-alt"></i>
+                            <span>0901 234 567</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@motodeal-premium.vn</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Mở cửa: 8:00 - 18:00 (Thứ 2 - Thứ 7)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="copyright">
+                &copy; 2023 MotoDeal Premium. Bản quyền thuộc về MotoDeal Premium.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.getElementById('mainMenu').classList.toggle('show');
+        });
+
+        // Handle form submission (client-side only for now)
+        document.querySelector('.contact-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // In a real application, you would send this data to a server
+            // using technologies like AJAX (fetch API) or a backend language (PHP, Node.js, Python, etc.)
+
+            alert('Cảm ơn bạn đã gửi tin nhắn! Chúng tôi sẽ phản hồi trong thời gian sớm nhất.');
+            this.reset(); // Clear the form after submission
+        });
+    </script>
+</body>
+
+</html>

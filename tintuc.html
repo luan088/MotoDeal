@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MotoDeal Premium - Tin tức xe phân khối lớn</title>
+    <style>
+         :root {
+            --primary: #d32f2f;
+            --primary-dark: #9a0007;
+            --primary-light: #ff6659;
+            --secondary: #212121;
+            --light: #f5f5f5;
+            --dark: #212121;
+            --gray: #757575;
+            --light-gray: #e0e0e0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #fafafa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+        }
+        
+        header {
+            background-color: var(--dark);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            color: var(--primary);
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 32px;
+        }
+        
+        .logo span {
+            color: white;
+            font-weight: 300;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+            position: relative;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 5px 0;
+            position: relative;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        nav ul li a.active {
+            color: var(--primary);
+        }
+        
+        nav ul li a.active:after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin: 60px 0 40px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--dark);
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto 50px;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            margin-left: 15px;
+        }
+        
+        .btn-outline:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .footer-column p {
+            color: var(--light-gray);
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: block;
+            padding: 5px 0;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .contact-info {
+            list-style: none;
+        }
+        
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .contact-info i {
+            color: var(--primary);
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light-gray);
+            font-size: 14px;
+        }
+        /* --- New styles for News page --- */
+        
+        .hero-news {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://via.placeholder.com/1920x600?text=News+Hero+Image') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+        }
+        
+        .hero-news h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero-news p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .news-section {
+            padding: 60px 0;
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .news-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+        
+        .news-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+        
+        .news-card-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .news-card .category {
+            display: inline-block;
+            background-color: var(--primary-light);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .news-card h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: var(--dark);
+            line-height: 1.3;
+        }
+        
+        .news-card p {
+            font-size: 15px;
+            color: var(--gray);
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+        
+        .news-card .read-more {
+            display: inline-block;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .news-card .read-more:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+        
+        .news-card .date-author {
+            font-size: 13px;
+            color: var(--gray);
+            margin-top: 10px;
+            border-top: 1px solid var(--light-gray);
+            padding-top: 10px;
+        }
+        /* Responsive styles */
+        
+        @media (max-width: 992px) {
+            .section-title h2 {
+                font-size: 36px;
+            }
+            .hero-news h1 {
+                font-size: 40px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: var(--dark);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                align-items: center;
+            }
+            nav ul.show {
+                display: flex;
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .section-title h2 {
+                font-size: 28px;
+            }
+            .hero-news h1 {
+                font-size: 32px;
+            }
+            .hero-news p {
+                font-size: 16px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .btn {
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+            .logo {
+                font-size: 24px;
+            }
+            .logo i {
+                font-size: 28px;
+            }
+            .news-card h3 {
+                font-size: 20px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-motorcycle"></i> MotoDeal<span>Premium</span>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav>
+                    <ul id="mainMenu">
+                        <li><a href="index .html">Trang chủ</a></li>
+                        <li><a href="muaxe.html">Mua xe PKL</a></li>
+                        <li><a href="banxe.html">Bán xe PKL</a></li>
+                        <li><a href="phutung.html" class="active">Phụ tùng</a></li>
+                        <li><a href="tintuc.html">Tin tức</a></li>
+                        <li><a href="lienhe.html">Liên hệ</a></li>
+                    </ul>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-news">
+            <div class="container">
+                <h1>Tin tức và Đánh giá xe phân khối lớn</h1>
+                <p>Cập nhật những tin tức mới nhất, đánh giá chuyên sâu và xu hướng thị trường xe PKL.</p>
+                <a href="#news-articles" class="btn">Đọc tin tức ngay</a>
+            </div>
+        </section>
+
+        <section class="news-section" id="news-articles">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Bài viết mới nhất</h2>
+                </div>
+                <p class="section-subtitle">Luôn cập nhật những thông tin nóng hổi và hữu ích nhất về thế giới xe mô tô phân khối lớn.</p>
+
+                <div class="news-grid">
+                    <div class="news-card">
+                        <img src="https://xehay.vn/uploads/images/2021/11/02/xehay-ducati-streetfighter-v4-151121-1.jpg" alt="Ducati Streetfighter V4">
+                        <div class="news-card-content">
+                            <span class="category">Đánh giá xe</span>
+                            <h3>Đánh giá chi tiết Ducati Streetfighter V4: Quỷ dữ đường phố</h3>
+                            <p>Khám phá sức mạnh, công nghệ và cảm giác lái đầy phấn khích của mẫu naked bike hàng đầu từ Ducati.</p>
+                            <span class="date-author">20/05/2025 | Bởi Admin</span>
+                            <a href="https://www.motorcyclenews.com/bike-reviews/ducati/streetfighter-v4-sp2/2023/" class="read-more">Đọc thêm <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="news-card">
+                        <img src="https://minhlongmoto.com/wp-content/uploads/2024/01/s1000rr-2025.jpg" alt="BMW S1000RR 2025">
+                        <div class="news-card-content">
+                            <span class="category">Tin tức mới</span>
+                            <h3>BMW S1000RR 2025 ra mắt với nhiều cải tiến đáng giá</h3>
+                            <p>Những thay đổi về động cơ, hệ thống điện tử và thiết kế trên siêu mô tô BMW S1000RR phiên bản 2025.</p>
+                            <span class="date-author">18/05/2025 | Bởi Tùng Nguyễn</span>
+                            <a href="https://www.2banh.vn/threads/bmw-s1000rr-2025-moi-co-canh-gio-ham-ho-hon-chinh-thuc-ra-mat-voi-gia-tu-458-trieu-vnd.142789/" class="read-more">Đọc thêm <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="news-card">
+                        <img src="https://photo.znews.vn/w660/Uploaded/wyhktpu/2019_11_15/1_1.jpg" alt="Bảo dưỡng xe PKL">
+                        <div class="news-card-content">
+                            <span class="category">Mẹo & Kỹ thuật</span>
+                            <h3>5 điều cần biết khi bảo dưỡng xe phân khối lớn tại nhà</h3>
+                            <p>Hướng dẫn cơ bản giúp bạn tự chăm sóc chiếc xe PKL của mình một cách hiệu quả và an toàn.</p>
+                            <span class="date-author">15/05/2025 | Bởi Hoàng Minh</span>
+                            <a href="https://www.2banh.vn/threads/nhung-dieu-can-luu-y-de-bao-duong-tot-mot-chiec-xe-mo-to-phan-khoi-lon.42756/" class="read-more">Đọc thêm <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="news-card">
+                        <img src="https://cdn.thuvienphapluat.vn/phap-luat/2022-2/PPK/xe-phan-khoi-lon%20.jpg" alt="Luật lái xe PKL">
+                        <div class="news-card-content">
+                            <span class="category">Cẩm nang</span>
+                            <h3>Những quy định mới về luật lái xe phân khối lớn tại Việt Nam</h3>
+                            <p>Cập nhật các thông tin pháp lý quan trọng mà mọi biker cần nắm rõ để lái xe đúng luật.</p>
+                            <span class="date-author">10/05/2025 | Bởi Ban biên tập</span>
+                            <a href="https://hanamtv.vn/tu-2025-dieu-khien-xe-may-tren-125-cm3-phai-thi-bang-lai-nhu-xe-phan-khoi-lon-36556.html#:~:text=Theo%20quy%20%C4%91%E1%BB%8Bnh%20n%C3%A0y%2C%20t%E1%BB%AB,A%20theo%20quy%20%C4%91%E1%BB%8Bnh%20m%E1%BB%9Bi." class="read-more">Đọc thêm <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <img src="https://mainguyen.sgp1.digitaloceanspaces.com/293143/433132685_7676364755719628_2848592875121067625_n.jpg" alt="Sự kiện PKL Việt Nam">
+                        <div class="news-card-content">
+                            <span class="category">Sự kiện</span>
+                            <h3>Tổng kết Festival Xe PKL lớn nhất Việt Nam 2025</h3>
+                            <p>Toàn cảnh những điểm nhấn, mẫu xe độc đáo và hoạt động sôi nổi tại sự kiện.</p>
+                            <span class="date-author">05/05/2025 | Bởi Admin</span>
+                            <a href="https://mainguyenrider.com/tin-tuc/mai-nguyen-rider-chuyen-muc-rider/dai-hoi-moto-lon-nhat-viet-nam-vietnam-bike-week-2025-chinh-thuc-khoi-dong-tu-28-den-3032025-tai-bai-bien-cam-ranh-khanh-hoa" class="read-more">Đọc thêm <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <img src="https://media.doanhnghiepvn.vn/Images/Uploaded/Share/2025/02/10/Yamaha-YZF-R1-Race-2025.jpg?format=webp" alt="Top 10 xe PKL">
+                        <div class="news-card-content">
+                            <span class="category">Danh sách</span>
+                            <h3>Top 10 mẫu xe phân khối lớn được mong chờ nhất năm 2025</h3>
+                            <p>Danh sách các siêu phẩm và mẫu xe mới hứa hẹn làm mưa làm gió thị trường PKL.</p>
+                            <span class="date-author">01/05/2025 | Bởi Chuyên gia</span>
+                            <a href="https://baomoi.com/top-10-moto-1-000-phan-khoi-tot-nhat-nam-2025-ktm-990-rc-r-dung-dau-c51443494.epi" class="read-more">Đọc thêm <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Về MotoDeal Premium</h3>
+                    <p>Chuyên cung cấp các dòng xe phân khối lớn cao cấp từ các thương hiệu hàng đầu thế giới. Cam kết chất lượng và dịch vụ tốt nhất.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Liên kết nhanh</h3>
+                    <ul class="footer-links">
+                        <li><a href="trangchu.html">Trang chủ</a></li>
+                        <li><a href="muaxe.html">Mua xe PKL</a></li>
+                        <li><a href="banxe.html">Bán xe PKL</a></li>
+                        <li><a href="phutung.html">Phụ tùng</a></li>
+                        <li><a href="tintuc.html">Tin tức</a></li>
+                        <li><a href="lienhe.html">Liên hệ</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Liên hệ</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Đường ABC, Quận 1, TP.HCM</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone-alt"></i>
+                            <span>0901 234 567</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@motodeal-premium.vn</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Mở cửa: 8:00 - 18:00 (Thứ 2 - Thứ 7)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="copyright">
+                &copy; 2023 MotoDeal Premium. Bản quyền thuộc về MotoDeal Premium.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.getElementById('mainMenu').classList.toggle('show');
+        });
+    </script>
+</body>
+
+</html>

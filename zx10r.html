@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kawasaki Ninja ZX-10R - MotoDeal Premium</title>
+    <style>
+         :root {
+            --primary: #d32f2f;
+            --primary-dark: #9a0007;
+            --primary-light: #ff6659;
+            --secondary: #212121;
+            --light: #f5f5f5;
+            --dark: #212121;
+            --gray: #757575;
+            --light-gray: #e0e0e0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #fafafa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+        }
+        
+        header {
+            background-color: var(--dark);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            color: var(--primary);
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 32px;
+        }
+        
+        .logo span {
+            color: white;
+            font-weight: 300;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+            position: relative;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 5px 0;
+            position: relative;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        nav ul li a.active {
+            color: var(--primary);
+        }
+        
+        nav ul li a.active:after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            margin-left: 15px;
+        }
+        
+        .btn-outline:hover {
+            background-color: rgba(0, 104, 55, 0.1);
+        }
+        /* Product Detail Styles */
+        
+        .product-detail {
+            padding: 60px 0;
+        }
+        
+        .product-header {
+            margin-bottom: 40px;
+        }
+        
+        .product-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        
+        .product-subtitle {
+            font-size: 18px;
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        .product-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .product-gallery {
+            position: relative;
+        }
+        
+        .main-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .thumbnail-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        
+        .thumbnail {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .thumbnail:hover {
+            border-color: var(--primary);
+        }
+        
+        .thumbnail.active {
+            border-color: var(--primary);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            z-index: 1;
+            text-transform: uppercase;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-price {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .meta-item {
+            text-align: center;
+        }
+        
+        .meta-label {
+            font-size: 12px;
+            color: var(--gray);
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        
+        .meta-value {
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .product-description {
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        
+        .specs-table tr {
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .specs-table td {
+            padding: 12px 0;
+        }
+        
+        .specs-table td:first-child {
+            font-weight: 600;
+            width: 40%;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin: 60px 0 40px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--dark);
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .related-products {
+            padding: 60px 0;
+            background-color: var(--light);
+        }
+        
+        .bikes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .bike-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .bike-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .bike-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 1;
+            text-transform: uppercase;
+        }
+        
+        .bike-img {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .bike-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .bike-card:hover .bike-img img {
+            transform: scale(1.05);
+        }
+        
+        .bike-info {
+            padding: 25px;
+        }
+        
+        .bike-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            color: var(--gray);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .bike-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .bike-specs {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        .spec-item {
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+            color: var(--gray);
+        }
+        
+        .spec-item i {
+            margin-right: 5px;
+            color: var(--primary);
+        }
+        
+        .bike-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .bike-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .bike-actions .btn {
+            padding: 10px 20px;
+            font-size: 14px;
+            flex: 1;
+            text-align: center;
+        }
+        
+        .bike-actions .btn-outline {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: none;
+            margin-left: 10px;
+        }
+        
+        .bike-actions .btn-outline:hover {
+            background-color: rgba(0, 104, 55, 0.1);
+        }
+        
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .footer-column p {
+            color: var(--light-gray);
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: block;
+            padding: 5px 0;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .contact-info {
+            list-style: none;
+        }
+        
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .contact-info i {
+            color: var(--primary);
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light-gray);
+            font-size: 14px;
+        }
+        /* Responsive styles */
+        
+        @media (max-width: 992px) {
+            .product-content {
+                grid-template-columns: 1fr;
+            }
+            .product-gallery {
+                order: 1;
+            }
+            .product-info {
+                order: 2;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: var(--dark);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                align-items: center;
+            }
+            nav ul.show {
+                display: flex;
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .product-title {
+                font-size: 28px;
+            }
+            .product-actions {
+                flex-direction: column;
+            }
+            .btn-outline {
+                margin-left: 0;
+                margin-top: 15px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .thumbnail-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .product-meta {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-motorcycle"></i> MotoDeal<span>Premium</span>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav>
+                    <ul id="mainMenu">
+                        <li><a href="index .html">Trang chủ</a></li>
+                        <li><a href="muaxe.html">Mua xe PKL</a></li>
+                        <li><a href="banxe.html">Bán xe PKL</a></li>
+                        <li><a href="phutung.html" class="active">Phụ tùng</a></li>
+                        <li><a href="tintuc.html">Tin tức</a></li>
+                        <li><a href="lienhe.html">Liên hệ</a></li>
+                    </ul>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="product-detail container">
+        <div class="product-header">
+            <h1 class="product-title">Kawasaki Ninja ZX-10R</h1>
+            <p class="product-subtitle">Cỗ máy đua đường phố với công nghệ đỉnh cao từ Kawasaki</p>
+        </div>
+
+        <div class="product-content">
+            <div class="product-gallery">
+                <div class="product-badge">Flagship</div>
+                <img src="https://thanhnien.mediacdn.vn/uploaded/vietduc/2016_02_19/kawasaki-ninja-zx10r-2016-21_FRKL.jpg?width=600" alt="Kawasaki Ninja ZX-10R" class="main-image" id="mainImage">
+                <div class="thumbnail-container">
+                    <img src="https://kawasakihanoi.vn/admin/webroot/upload/image/images/z3861711114454_7c23d7feccfbfac3101e9140a7095808.jpg" alt="Kawasaki Ninja ZX-10R - Góc trước" class="thumbnail active" onclick="changeImage(this)">
+                    <img src="https://thanhnien.mediacdn.vn/uploaded/vietduc/2016_02_19/kawasaki-ninja-zx10r-2016-21_FRKL.jpg?width=600" alt="Kawasaki Ninja ZX-10R - Góc nghiêng" class="thumbnail" onclick="changeImage(this)">
+                    <img src="https://kawasakihanoi.vn/admin/webroot/upload/image/images/z3861714949346_da2e65997102f940b43ee52522f914d3.jpg" alt="Kawasaki Ninja ZX-10R - Góc sau" class="thumbnail" onclick="changeImage(this)">
+                    <img src="https://kawasakihanoi.vn/admin/webroot/upload/image/images/z3861710885874_57b810e6d56ac38460050d4ad1f82639.jpg" alt="Kawasaki Ninja ZX-10R - Động cơ" class="thumbnail" onclick="changeImage(this)">
+                </div>
+            </div>
+
+            <div class="product-info">
+                <div class="product-price">780.000.000đ</div>
+
+                <div class="product-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Năm sản xuất</div>
+                        <div class="meta-value">2024</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tình trạng</div>
+                        <div class="meta-value">Mới 100%</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Đã chạy</div>
+                        <div class="meta-value">500km </div>
+                    </div>
+                </div>
+
+                <div class="product-description">
+                    <p>Kawasaki Ninja ZX-10R là mẫu superbike hàng đầu của Kawasaki, kế thừa trực tiếp công nghệ từ những chiến thắng tại giải đua World Superbike. Với động cơ 4 xi-lanh 998cc mạnh mẽ, ZX-10R sản sinh công suất 203 mã lực cùng hàng loạt công
+                        nghệ điện tử tiên tiến.</p>
+                    <p>Phiên bản 2023 được nâng cấp toàn diện với hệ thống treo Showa BFRC-lite, phanh Brembo Stylema, hệ thống kiểm soát lực kéo, chống bó cứng phanh góc nghiêng và nhiều tính năng an toàn khác. Thiết kế khí động học hoàn toàn mới giúp tăng
+                        17% hiệu suất so với thế hệ trước.</p>
+                </div>
+
+                <table class="specs-table">
+                    <tr>
+                        <td>Hãng sản xuất</td>
+                        <td>Kawasaki</td>
+                    </tr>
+                    <tr>
+                        <td>Dòng xe</td>
+                        <td>Ninja ZX-10R</td>
+                    </tr>
+                    <tr>
+                        <td>Loại động cơ</td>
+                        <td>4 xi-lanh thẳng hàng, 4 kỳ, làm mát bằng chất lỏng</td>
+                    </tr>
+                    <tr>
+                        <td>Dung tích xi-lanh</td>
+                        <td>998cc</td>
+                    </tr>
+                    <tr>
+                        <td>Công suất tối đa</td>
+                        <td>203 HP @ 13,200 rpm</td>
+                    </tr>
+                    <tr>
+                        <td>Mô-men xoắn cực đại</td>
+                        <td>114.9 Nm @ 11,400 rpm</td>
+                    </tr>
+                    <tr>
+                        <td>Hộp số</td>
+                        <td>6 cấp, truyền động xích</td>
+                    </tr>
+                    <tr>
+                        <td>Hệ thống treo trước</td>
+                        <td>Ống lồng Showa BFRC-lite, đường kính 43mm</td>
+                    </tr>
+                    <tr>
+                        <td>Hệ thống treo sau</td>
+                        <td>Giảm xóc đơn Showa BFRC, điều chỉnh lò xo trước</td>
+                    </tr>
+                    <tr>
+                        <td>Phanh trước</td>
+                        <td>2 đĩa 330mm, phanh đối xứng 4-piston Brembo Stylema</td>
+                    </tr>
+                    <tr>
+                        <td>Phanh sau</td>
+                        <td>Đĩa 220mm, phanh đơn piston</td>
+                    </tr>
+                    <tr>
+                        <td>Lốp trước</td>
+                        <td>120/70 ZR17</td>
+                    </tr>
+                    <tr>
+                        <td>Lốp sau</td>
+                        <td>190/55 ZR17</td>
+                    </tr>
+                    <tr>
+                        <td>Chiều dài/rộng/cao</td>
+                        <td>2,085mm / 740mm / 1,145mm</td>
+                    </tr>
+                    <tr>
+                        <td>Khoảng cách trục bánh xe</td>
+                        <td>1,440mm</td>
+                    </tr>
+                    <tr>
+                        <td>Chiều cao yên</td>
+                        <td>835mm</td>
+                    </tr>
+                    <tr>
+                        <td>Trọng lượng khô</td>
+                        <td>207kg</td>
+                    </tr>
+                    <tr>
+                        <td>Dung tích bình xăng</td>
+                        <td>17 lít</td>
+                    </tr>
+                    <tr>
+                        <td>Công nghệ hỗ trợ</td>
+                        <td>KIBS (ABS góc nghiêng), KTRC (kiểm soát lực kéo), KQS (số nhanh), Launch Control, 4 chế độ lái</td>
+                    </tr>
+                </table>
+
+                <div class="product-actions">
+                    <a href="lienhe.html" class="btn">Liên hệ ngay</a>
+                    <a href="#" class="btn btn-outline">Đặt lịch lái thử</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="related-products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Sản Phẩm Tương Tự</h2>
+            </div>
+
+            <div class="bikes-grid">
+                <div class="bike-card">
+                    <div class="bike-img">
+                        <img src="https://kawasakisaigon.com/uploads/file//1%20zx6r%202021/ninjazx6r-2022-green-01.jpg" alt="Kawasaki Ninja ZX-6R">
+                    </div>
+                    <div class="bike-info">
+                        <div class="bike-meta">
+                            <span>Kawasaki</span>
+                            <span>2023</span>
+                        </div>
+                        <h3 class="bike-title">Kawasaki Ninja ZX-6R</h3>
+                        <div class="bike-specs">
+                            <div class="spec-item">
+                                <i class="fas fa-tachometer-alt"></i> 636cc
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-bolt"></i> 130 HP
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-road"></i> 0km
+                            </div>
+                        </div>
+                        <div class="bike-price">399.000.000đ</div>
+                        <div class="bike-actions">
+                            <a href="#" class="btn">Chi tiết</a>
+                            <a href="#" class="btn btn-outline">Liên hệ</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bike-card">
+                    <div class="bike-img">
+                        <img src="https://titanmoto.vn/uploads/images/tintuc/2024/T9/2025-yamaha-r1-va-r1m/2025-yamaha-r1-va-r1m-1.jpg" alt="Yamaha YZF-R1">
+                    </div>
+                    <div class="bike-info">
+                        <div class="bike-meta">
+                            <span>Yamaha</span>
+                            <span>2023</span>
+                        </div>
+                        <h3 class="bike-title">Yamaha YZF-R1</h3>
+                        <div class="bike-specs">
+                            <div class="spec-item">
+                                <i class="fas fa-tachometer-alt"></i> 998cc
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-bolt"></i> 200 HP
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-road"></i> 0km
+                            </div>
+                        </div>
+                        <div class="bike-price">720.000.000đ</div>
+                        <div class="bike-actions">
+                            <a href="#" class="btn">Chi tiết</a>
+                            <a href="#" class="btn btn-outline">Liên hệ</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bike-card">
+                    <div class="bike-img">
+                        <img src="https://ducativietnam.com/upload/files/Panigale%20v4/PV4-MY21-Model-Preview-1050x650-v02.png" alt="Ducati Panigale V4">
+                    </div>
+                    <div class="bike-info">
+                        <div class="bike-meta">
+                            <span>Ducati</span>
+                            <span>2023</span>
+                        </div>
+                        <h3 class="bike-title">Ducati Panigale V4</h3>
+                        <div class="bike-specs">
+                            <div class="spec-item">
+                                <i class="fas fa-tachometer-alt"></i> 1,103cc
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-bolt"></i> 214 HP
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-road"></i> 0km
+                            </div>
+                        </div>
+                        <div class="bike-price">1.050.000.000đ</div>
+                        <div class="bike-actions">
+                            <a href="#" class="btn">Chi tiết</a>
+                            <a href="#" class="btn btn-outline">Liên hệ</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Về MotoDeal Premium</h3>
+                    <p>Chuyên cung cấp các dòng xe phân khối lớn cao cấp từ các thương hiệu hàng đầu thế giới. Cam kết chất lượng và dịch vụ tốt nhất.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Liên kết nhanh</h3>
+                    <ul class="footer-links">
+                        <li><a href="trangchu.html">Trang chủ</a></li>
+                        <li><a href="muaxe.html">Mua xe PKL</a></li>
+                        <li><a href="banxe.html">Bán xe PKL</a></li>
+                        <li><a href="phutung.html">Phụ tùng</a></li>
+                        <li><a href="tintuc.html">Tin tức</a></li>
+                        <li><a href="lienhe.html">Liên hệ</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Liên hệ</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>789 Đường ABC, Quận 1, TP.HCM</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone-alt"></i>
+                            <span>0909 123 456</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@motodeal-premium.vn</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Mở cửa: 8:00 - 18:00 (Thứ 2 - Thứ 7)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="copyright">
+                &copy; 2023 MotoDeal Premium. Bản quyền thuộc về MotoDeal Premium.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.getElementById('mainMenu').classList.toggle('show');
+        });
+
+        // Image gallery functionality
+        function changeImage(thumbnail) {
+            // Remove active class from all thumbnails
+            document.querySelectorAll('.thumbnail').forEach(function(item) {
+                item.classList.remove('active');
+            });
+
+            // Add active class to clicked thumbnail
+            thumbnail.classList.add('active');
+
+            // Change main image
+            document.getElementById('mainImage').src = thumbnail.src;
+        }
+    </script>
+</body>
+
+</html>

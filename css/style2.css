@@ -1,0 +1,14 @@
+.table,
+td {
+    border-collapse: collapse;
+}
+
+td {
+    padding: 20px;
+    border: 1px solid black;
+}
+
+table {
+    border: 3px solid black;
+    background-color: orangered;
+}

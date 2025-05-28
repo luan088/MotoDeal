@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng Tin Bán Xe - MotoDeal Premium</title>
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+         :root {
+            --primary: #d32f2f;
+            /* Màu chính của nút đăng tin và các hiệu ứng */
+            --primary-dark: #9a0007;
+            --secondary: #212121;
+            /* Màu chân trang */
+            --light: #f5f5f5;
+            --dark: #212121;
+            --gray: #757575;
+            --light-gray: #e0e0e0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #fafafa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        /* Header */
+        
+        header {
+            background-color: var(--dark);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            color: var(--primary);
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 32px;
+        }
+        
+        .logo span {
+            color: white;
+            font-weight: 300;
+        }
+        /* Navigation */
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 5px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: var(--primary);
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                position: absolute;
+                top: 70px;
+                right: 20px;
+                background-color: var(--dark);
+                flex-direction: column;
+                width: 200px;
+                display: none;
+                padding: 10px;
+                border-radius: 5px;
+            }
+            nav ul.show {
+                display: flex;
+            }
+            .mobile-menu-btn {
+                display: block;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 24px;
+            }
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+        }
+        /* Tiêu đề trang */
+        
+        .title-section {
+            text-align: center;
+            margin: 60px 0 30px;
+        }
+        
+        .title-section h2 {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .title-section h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        /* Form đăng bán xe */
+        
+        form {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            margin: 0 auto 60px;
+        }
+        
+        form h3 {
+            margin-bottom: 20px;
+            color: var(--primary);
+            font-size: 24px;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        input[type="text"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--gray);
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            transition: border 0.3s;
+        }
+        
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        /* Nút đăng tin */
+        
+        .btn-submit {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .btn-submit:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        /* Footer */
+        
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 60px 20px 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .footer-column p,
+        .footer-column ul {
+            margin-bottom: 15px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        /* Icon social và liên kết nhanh */
+        
+        .footer-column ul li a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        /* Hiệu ứng hover cho icon và liên kết */
+        
+        .footer-column ul li a:hover {
+            color: var(--primary);
+        }
+        /* Màu icon theo mặc định */
+        
+        .footer-column ul li a i {
+            font-size: 20px;
+            margin-right: 10px;
+            transition: color 0.3s;
+        }
+        /* Khi hover icon, đổi màu */
+        
+        .footer-column ul li a:hover i {
+            color: var(--primary);
+        }
+        /* Các icon mạng xã hội có hover */
+        
+        .footer-column .d-flex a {
+            font-size: 20px;
+            color: var(--light-gray);
+            margin-right: 10px;
+            transition: color 0.3s;
+        }
+        
+        .footer-column .d-flex a:hover {
+            color: var(--primary);
+        }
+        
+        .contact-info {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .contact-info i {
+            color: var(--primary);
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container d-flex justify-content-between align-items-center py-2 header-container">
+            <div class="logo d-flex align-items-center">
+                <i class="fas fa-motorcycle"></i> MotoDeal<span>Premium</span>
+            </div>
+            <button class="mobile-menu-btn d-block d-md-none" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+            <nav>
+                <ul class="d-flex gap-3 mb-0" id="mainMenu">
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="muaxe.html">Mua xe PKL</a></li>
+                    <li><a href="banxe.html" class="active">Bán xe PKL</a></li>
+                    <li><a href="phutung.html">Phụ tùng</a></li>
+                    <li><a href="tintuc.html">Tin tức</a></li>
+                    <li><a href="lienhe.html">Liên hệ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Tiêu đề trang -->
+    <section class="title-section text-center">
+        <h2>Đăng Thông Tin Bán Xe</h2>
+    </section>
+
+    <!-- Form đăng bán xe -->
+    <form action="#" method="post" class="mx-auto my-4" style="max-width: 900px;">
+        <h3 class="mb-4">Thông Tin Xe</h3>
+        <div class="mb-3">
+            <label for="brand" class="form-label">Thương hiệu</label>
+            <select class="form-select" id="brand" name="brand" required>
+      <option value="">-- Chọn thương hiệu --</option>
+      <option value="ducati">Ducati</option>
+      <option value="kawasaki">Kawasaki</option>
+      <option value="kTM">KTM</option>
+      <option value="yamaha">Yamaha</option>
+      <option value="honda">Honda</option>
+      <option value="suzuki">Suzuki</option>
+      <option value="aprilia">Aprilia</option>
+    </select>
+        </div>
+        <div class="mb-3">
+            <label for="model" class="form-label">Dòng xe</label>
+            <input type="text" class="form-control" id="model" name="model" placeholder="Nhập dòng xe" required />
+        </div>
+        <div class="mb-3">
+            <label for="year" class="form-label">Năm sản xuất</label>
+            <input type="number" class="form-control" id="year" name="year" min="2000" max="2024" placeholder="Ví dụ: 2023" required />
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Giá bán (đ)</label>
+            <input type="text" class="form-control" id="price" name="price" placeholder="Ví dụ: 500.000.000" required />
+        </div>
+        <div class="mb-3">
+            <label for="mileage" class="form-label">Kilometage (km)</label>
+            <input type="number" class="form-control" id="mileage" name="mileage" min="0" placeholder="Ví dụ: 5000" required />
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Mô tả chi tiết</label>
+            <textarea class="form-control" id="description" name="description" placeholder="Thông tin mô tả xe"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="images" class="form-label">Hình ảnh (URL)</label>
+            <input type="text" class="form-control" id="images" name="images" placeholder="Nhập URL hình ảnh chính của xe" required />
+        </div>
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary btn-lg rounded-pill px-4" style="background-color: #d32f2f; border-color: #d32f2f;">Đăng Tin</button>
+        </div>
+    </form>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <!-- Về MotoDeal -->
+                <div class="footer-column">
+                    <h3>Về MotoDeal Premium</h3>
+                    <p>Chuyên cung cấp các dòng xe phân khối lớn cao cấp từ các thương hiệu hàng đầu thế giới. Cam kết chất lượng và dịch vụ tốt nhất.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <!-- Liên kết nhanh -->
+                <div class="footer-column">
+                    <h3>Liên kết nhanh</h3>
+                    <ul>
+                        <li><a href="index .html">Trang chủ</a></li>
+                        <li><a href="muaxe.html">Mua xe PKL</a></li>
+                        <li><a href="banxe.html">Bán xe PKL</a></li>
+                        <li><a href="phutung.html">Phụ tùng</a></li>
+                        <li><a href="tintuc.html">Tin tức</a></li>
+                        <li><a href="lienhe.html">Liên hệ</a></li>
+                    </ul>
+                </div>
+                <!-- Liên hệ -->
+                <div class="footer-column">
+                    <h3>Liên hệ</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Đường ABC, Quận 1, TP.HCM</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone-alt"></i>
+                            <span>0901 234 567</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@motodeal-premium.vn</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Mở cửa: 8:00 - 18:00 (Thứ 2 - Thứ 7)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom mt-4">
+                © 2023 MotoDeal Premium. Bản quyền thuộc về MotoDeal Premium.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Toggle menu trên mobile
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.querySelector('#mainMenu').classList.toggle('show');
+        });
+    </script>
+</body>
+
+</html>
